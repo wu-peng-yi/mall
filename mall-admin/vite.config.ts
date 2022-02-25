@@ -13,7 +13,7 @@ export default defineConfig({
   },
   base: '/',  //设置打包路径
   server: {
-    port: 6000, //启动端口
+    port: 7000, //启动端口
     open: true, //启动服务时打开浏览器
     cors: true //允许跨域
 

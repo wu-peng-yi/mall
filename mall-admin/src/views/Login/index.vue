@@ -1,12 +1,10 @@
 <template>
-<div>
-  asdasdaasdasdadas
-</div>
+
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "login"
 }
 </script>
 

@@ -1,6 +1,6 @@
 import {
     createRouter,
-    createWebHashHistory,
+    createWebHistory,
     RouteRecordRaw
 } from "vue-router";
 
@@ -19,14 +19,15 @@ const routes: Array<RouteRecordRaw> = [
         component: Vuex
     },
     {
-        path: 'axios',
+        path: '/axios',
         name: 'Axios',
         component: () => import('@/views/axios.vue')
     }
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    // history: createWebHashHistory('/'),
+    history: createWebHistory("/"),
     routes
 })
 
