@@ -1,26 +1,11 @@
-import {createStore} from "vuex";
+import  Vuex from 'vuex'
+import user1 from "./user";
 
-const defaultState = {
-    count: 0
-}
-
-export default createStore({
-    state() {
-        return defaultState
+const store = new Vuex.Store({
+    modules:{
+        user1,
     },
-    mutations: {
-        increment(state: typeof defaultState) {
-            state.count++
-        }
-    },
-    actions: {
-        increment(context) {
-            context.commit('increment')
-        }
-    },
-    getters: {
-        double(state: typeof defaultState) {
-            return 2 * state.count
-        }
-    }
 })
+export default store
+
+
