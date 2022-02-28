@@ -42,8 +42,9 @@
 import {reactive, ref} from "vue";
 import {isValidUsername} from "../../utils/validate";
 import type {ElForm} from 'element-plus'
-import store from "../../store";
-import router from "../../router";
+
+import { useStore } from "vuex";
+const store = useStore();
 
 
 type FormInstance = InstanceType<typeof ElForm>
@@ -87,7 +88,7 @@ const handleLogin = (formEl: FormInstance ) => {
   console.log(formEl)
   formEl.validate((valid) => {
     if (valid) {
-      console.log(store)
+      console.log(store.state)
       store.dispatch('Login',loginForm).then(() =>{
         console.log("999")
       })

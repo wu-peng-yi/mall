@@ -1,5 +1,7 @@
 import {createStore} from "vuex";
 
+
+
 const user = {
     token: 'getToken()',
     name: '',
@@ -8,7 +10,7 @@ const user = {
 }
 
 
-const user1 =  createStore({
+export default createStore({
     state() {
         return user
     },
@@ -34,7 +36,9 @@ const user1 =  createStore({
             return new Promise((resolve, reject) => {
             })
         }
-    }
+    },
+
+
 })
 
 
@@ -43,5 +47,4 @@ interface userInfo {
     password:string
 }
 
-export default user1
 
