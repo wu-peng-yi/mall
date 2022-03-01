@@ -42,7 +42,7 @@ export default createStore({
                     const data = response.data
                     const tokenStr = data.tokenHead+data.token
                     // setToken(tokenStr)
-                    commit('SET_TOKEN', tokenStr)
+                    // commit('SET_TOKEN', tokenStr)
                     // resolve()
                 }).catch((error:Error) => {
                     reject(error)
