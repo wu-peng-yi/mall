@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import {login} from "../api/user";
 
 
 
@@ -34,9 +35,18 @@ export default createStore({
 
     actions: {
         Login({commit},userInfo: userInfo) {
-            console.log("dasdasd")
             const username = userInfo.username.trim()
             return new Promise((resolve, reject) => {
+                login(username, userInfo.password).then((response) => {
+                    console.log(response)
+                    const data = response.data
+                    const tokenStr = data.tokenHead+data.token
+                    // setToken(tokenStr)
+                    commit('SET_TOKEN', tokenStr)
+                    // resolve()
+                }).catch((error:Error) => {
+                    reject(error)
+                })
             })
         }
     },

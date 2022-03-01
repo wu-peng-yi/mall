@@ -88,7 +88,6 @@ const handleLogin = (formEl: FormInstance ) => {
   console.log(formEl)
   formEl.validate((valid) => {
     if (valid) {
-      console.log(store.state)
       store.dispatch('Login',loginForm).then(() =>{
         console.log("999")
       })

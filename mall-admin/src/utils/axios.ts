@@ -1,7 +1,7 @@
 import Axios from "axios";
 import {ElMessage} from "element-plus";
 
-const baseURL = 'http://localhost:9999'
+const baseURL = 'http://localhost:9900'
 
 const axios = Axios.create({
     baseURL,

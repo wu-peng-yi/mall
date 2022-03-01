@@ -13,20 +13,17 @@ export default defineConfig({
   },
   base: '/',  //设置打包路径
   server: {
-    port: 7000, //启动端口
-    open: true, //启动服务时打开浏览器
-    cors: true //允许跨域
-
-    // 设置代理，根据我们项目实际情况配置
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://xxx.xxx.xxx.xxx:8000',
-    //     changeOrigin: true,
-    //     secure: false,
-    //     rewrite: (path) => path.replace('/api/', '/')
-    //   }
-    // }
-
-  }
+    port: 7000,
+    open: false, //自动打开
+    base: "./ ", //生产环境路径
+    proxy: { // 本地开发环境通过代理实现跨域，生产环境使用 nginx 转发
+      // 正则表达式写法
+      '^/api': {
+        target: 'http://localhost:9900', // 后端服务实际地址
+        changeOrigin: true, //开启代理
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  },
 
 })
