@@ -1,6 +1,8 @@
 package com.wpy.mall.admin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,14 +13,25 @@ public class Main {
     public static void main(String[] args) {
     }
 
-    public ListNode reverseList(ListNode head) {
-        ListNode res = null;
-        while (head != null) {
-            ListNode temp = head.next;
-            head.next = res;
-            res = head;
-            head = temp;
+
+
+    public  boolean isSymmetric(TreeNode root) {
+        if (root == null) {
+            return true;
         }
-        return res;
+
+        return isSymmetricPer(root.left,root.right);
     }
+
+    private boolean isSymmetricPer(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        }
+        if(left== null || right == null || left.val != right.val) {
+            return false;
+        }
+        return isSymmetricPer(left.left,right.right) && isSymmetricPer(left.right,right.left);
+    }
+
+
 }

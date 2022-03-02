@@ -1,9 +1,12 @@
 package com.example.mall.common.api;
 
+import lombok.Data;
+
 /**
  * @author W
  * @date 2022-02-23
  */
+@Data
 public class CommonResult<T> {
 
     /**

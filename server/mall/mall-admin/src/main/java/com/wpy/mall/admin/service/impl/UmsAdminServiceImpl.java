@@ -1,7 +1,10 @@
 package com.wpy.mall.admin.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.example.mall.common.exception.Asserts;
+import com.wpy.mall.admin.service.UmsAdminCacheService;
 import com.wpy.mall.admin.service.UmsAdminService;
+import com.wpy.mall.mbg.mapper.UmsAdminMapper;
 import com.wpy.mall.mbg.model.UmsAdmin;
 import com.wpy.mall.mbg.model.UmsAdminExample;
 import com.wpy.mall.mbg.model.UmsResource;
@@ -24,6 +27,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UmsAdminCacheService adminCacheService;
+
+    @Autowired
+    private UmsAdminMapper adminMapper;
 
     @Override
     public String login(String username, String password) {
@@ -48,27 +57,38 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        return null;
+
         //获取用户信息
-        //UmsAdmin admin = getAdminByUsername(username);
-        //if (admin != null) {
-        //    List<UmsResource> resourceList = getResourceList(admin.getId());
-        //    return new AdminUserDetails(admin,resourceList);
-        //}
-        //throw new UsernameNotFoundException("用户名或密码错误");
+        UmsAdmin admin = getAdminByUsername(username);
+        if (admin != null) {
+            List<UmsResource> resourceList = getResourceList(admin.getId());
+            return new AdminUserDetails(admin,resourceList);
+        }
+        throw new UsernameNotFoundException("用户名或密码错误");
     }
 
-    /*private UmsAdmin getAdminByUsername(String username) {
+    private List<UmsResource> getResourceList(Long adminId) {
+        List<UmsResource> resourceList = adminCacheService.getResourceList(adminId);
+        if (CollUtil.isNotEmpty(resourceList)) {
+            return resourceList;
+        }
+        resourceList = ad
+        return null;
+    }
+
+    private UmsAdmin getAdminByUsername(String username) {
         UmsAdmin admin = adminCacheService.getAdmin(username);
-        if(admin!=null) return  admin;
+        if (admin != null) {
+            return admin;
+        }
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(username);
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
-        if (adminList != null && adminList.size() > 0) {
+        if (CollUtil.isNotEmpty(adminList)) {
             admin = adminList.get(0);
             adminCacheService.setAdmin(admin);
             return admin;
         }
         return null;
-    }*/
+    }
 }
