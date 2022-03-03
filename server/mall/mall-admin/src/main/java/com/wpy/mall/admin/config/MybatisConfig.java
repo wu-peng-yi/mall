@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2022-03-03
  */
 @Configuration
-@MapperScan({"com.wpy.mall.mapper","com.wpy.mall"})
+@MapperScan({"com.wpy.mall.mbg.mapper","com.wpy.mall.admin.dao"})
 @EnableTransactionManagement
 public class MybatisConfig {
 }
