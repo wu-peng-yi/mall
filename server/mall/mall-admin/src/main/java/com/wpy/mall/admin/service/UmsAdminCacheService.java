@@ -21,5 +21,5 @@ public interface UmsAdminCacheService {
 
     List<UmsResource> getResourceList(Long adminId);
 
-    void setResourceList(Long adminId, List<UmsResource> resourceList)
+    void setResourceList(Long adminId, List<UmsResource> resourceList);
 }

@@ -6,6 +6,7 @@ import com.wpy.mall.mbg.model.UmsAdmin;
 import com.wpy.mall.mbg.model.UmsResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author W
  * @date 2022-03-02
  */
+@Service
 public class UmsAdminCacheServiceImpl implements UmsAdminCacheService {
 
     @Value("${redis.database}")
